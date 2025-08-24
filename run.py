@@ -2,6 +2,7 @@ from MungLang import MungLang
 
 # customize
 NAME = "뭉선후"
+EXTENSION = "mung"
 
 
 # function
@@ -11,7 +12,7 @@ def getCode(stringList: list):
     return result
 
 
-f = open("./code.txt", "r", encoding="UTF8")
+f = open(f"./code.{EXTENSION}", "r", encoding="UTF8")
 try:
     language = MungLang(NAME)
     code = getCode(f.readlines())
