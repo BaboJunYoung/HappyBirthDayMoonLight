@@ -1,4 +1,4 @@
-from MoonLang import MoonLang
+from MungLang import MungLang
 
 # customize
 NAME = "뭉선후"
@@ -13,7 +13,7 @@ def getCode(stringList: list):
 
 f = open("./code.txt", "r", encoding="UTF8")
 try:
-    language = MoonLang(NAME)
+    language = MungLang(NAME)
     code = getCode(f.readlines())
     # print(code)
     language.run(code)

@@ -1,4 +1,4 @@
-class MoonLang():
+class MungLang():
     def __init__(self, name="뭉선후"):
         if len(name) < 3: raise Exception("아 이건 이름이 될 수 없음")
 

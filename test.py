@@ -1,6 +1,6 @@
-from MoonLang import MoonLang
+from MungLang import MungLang
 
-language = MoonLang("뭉선후")
+language = MungLang("뭉선후")
 
 code = """
 뭉 뭉뭉뭉뭉선후르! 뭉뭉뭉선후르! 뭉뭉뭉뭉선후르
