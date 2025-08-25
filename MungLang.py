@@ -55,7 +55,7 @@ class MungLang():
             elif token in ["따삐에"]: break
 
             elif token == "여기부터->": 
-                while self.tokens[self.readingPosition] != "<-여기까지주석임": self.readingPosition += 1
+                while "<-여기까지주석임" not in self.tokens[self.readingPosition]: self.readingPosition += 1
                 self.readingPosition += 1
             
             elif token == "이것좀들어줘":
