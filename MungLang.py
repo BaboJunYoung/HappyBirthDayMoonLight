@@ -1,23 +1,22 @@
 class MungLang():
     def __init__(self, name="뭉선후"):
-        if len(name) < 3: raise Exception("아 이건 이름이 될 수 없음")
+        if len(name) < 3: raise Exception(f"아, {name}? 이건 이름이 될 수 없음")
 
         self.name = name[:3]
-        self.lastName = name[0]
-        self.firstName = name[1:]
+        self.holding = 0
+        self.header = 0
+        self.tapes = [0]
 
         self.tokens = []
-        self.tapes = [0]
-        self.header = 0
         self.readingPosition = 0
-        self.holding = 0
 
         self.inputQueue = []
 
-        print(f"{self.name}, 생일축하해!")
         
     def run(self, code: str):
         self.tokens = code.replace("\n", " ").split(" ")
+
+        print(f"{self.name}, 생일축하해!")
 
         while (self.readingPosition < len(self.tokens)):
             token = self.tokens[self.readingPosition]
@@ -48,7 +47,7 @@ class MungLang():
 
             # 뭉선
             elif token == f"{self.name[:2]}":
-                if self.tapes[self.header] != 0: self.readingPosition += 1
+                if self.holding != 0: self.readingPosition += 1
             
             # 뭉
             elif token == f"{self.name[:1]}":
@@ -62,8 +61,10 @@ class MungLang():
                 self.readingPosition += 1
             
             elif token == "이것좀들어줘":
-                data = ord(input()[0])
-                self.holding = data
+                if len(self.inputQueue) == 0:
+                    datas = input()
+                    for data in datas: self.inputQueue.append(data)
+                else: self.holding = ord(self.inputQueue.pop())
 
             elif token in ["", "바보"]: pass
 
@@ -76,7 +77,7 @@ class MungLang():
     def __calculate(self):
         code = self.tokens[self.readingPosition]
 
-        if "선후르" not in code: raise Exception("아 이거 숫자 아님")
+        if "선후르" not in code: raise Exception(f"아, {code}? 이거 숫자 아님")
         
         number = 0
 
@@ -98,5 +99,5 @@ class MungLang():
     
     def __movePointerLeft(self, number: int = 1):
         
-        self.header = self.header - number
+        self.header -= number
         if self.header < 0: raise Exception("왼쪽으로 넘어감 뿌엑")
