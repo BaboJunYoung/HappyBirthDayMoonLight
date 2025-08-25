@@ -41,13 +41,16 @@ class MungLang():
             elif token == f"{self.name}생":
                 print(chr(self.tapes[self.header]), end="")
             
+            # 뭉선후
             elif token == f"{self.name}":
                 while self.tokens[self.readingPosition] != "바보": self.readingPosition -= 1
-                self.readingPosition += 1
+                # self.readingPosition += 1
 
+            # 뭉선
             elif token == f"{self.name[:2]}":
                 if self.tapes[self.header] != 0: self.readingPosition += 1
             
+            # 뭉
             elif token == f"{self.name[:1]}":
                 self.readingPosition += 1
                 self.holding = self.__calculate()
@@ -62,9 +65,9 @@ class MungLang():
                 data = ord(input()[0])
                 self.holding = data
 
-            elif token == "": pass
+            elif token in ["", "바보"]: pass
 
-            else: print(f"\n{self.tokens[self.readingPosition]}..? 이해못해서 넘길게용 힛", end="")
+            else: print(f"{self.tokens[self.readingPosition]}..? 이해못해서 넘길게용 힛", end="")
 
             self.readingPosition += 1
         print("\n뭉선후, 내년 생일도 축하해!")
